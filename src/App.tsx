@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { Input } from "./components/input";
-import { Stopwatch } from "./components/stopwatch";
-
 import "./styles/app.scss";
 
 function App() {
@@ -43,32 +40,6 @@ function App() {
     (timer / 1000) % 60,
     timer % 1000,
   ].map((t) => Math.floor(t));
-
-  // const HandleTime = () => {
-  //   var verifSeconds = Number((timer / 1000).toFixed(0));
-  //   var Milliseconds: string | number = timer - verifSeconds * 1000;
-
-  //   var verifMinuts = Number((verifSeconds / 60).toFixed(0));
-  //   var Seconds: string | number = verifSeconds - verifMinuts * 60;
-
-  //   var Hours: string | number = Number((verifMinuts / 60).toFixed(0));
-  //   var Minuts: string | number = verifMinuts - Hours * 60;
-
-  //   if (Milliseconds.toString().length == 1) {
-  //     Milliseconds = "0" + Milliseconds;
-  //   }
-  //   if (Seconds.toString().length == 1) {
-  //     Seconds = "0" + Seconds;
-  //   }
-  //   if (Minuts.toString().length == 1) {
-  //     Minuts = "0" + Minuts;
-  //   }
-  //   if (Hours.toString().length == 1) {
-  //     Hours = "0" + Hours;
-  //   }
-
-  //   setHour(`${Hours}:${Minuts}:${Seconds}:${Milliseconds}`);
-  // }
 
   const HandleSetTime = () => {
     if (inputValue) {
