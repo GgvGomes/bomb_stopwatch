@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Input } from "./components/input";
 import { Stopwatch } from "./components/stopwatch";
@@ -6,14 +6,69 @@ import { Stopwatch } from "./components/stopwatch";
 import "./styles/app.scss";
 
 function App() {
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState<number>(0);
   const [timerWaiting, setTimerWaiting] = useState(0);
   const [password, setPassword] = useState("");
+
+  const [hour, setHour] = useState("00:00:00:00");
+  const [isCronometroAtivo, setIsCronometroAtivo] = useState(false);
 
   const [type, setType] = useState("number");
   const [inputValue, setInputValue] = useState("");
 
   const input: any = document.getElementById("input_pass");
+
+  function handleStartStop() {
+    setIsCronometroAtivo((ativo) => !ativo);
+  }
+
+  useEffect(() => {
+    let intervalId: number | undefined;
+    if (isCronometroAtivo) {
+      intervalId = setInterval(() => {
+        setTimer((t) => t - 1);
+      }, 1);
+    }
+
+    if(timer == 0){
+      setIsCronometroAtivo(false);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [isCronometroAtivo]);
+
+  const [horas, minutos, segundos, milissegundos] = [
+    timer / (1000 * 60 * 60),
+    (timer / (1000 * 60)) % 60,
+    (timer / 1000) % 60,
+    timer % 1000,
+  ].map((t) => Math.floor(t));
+
+  // const HandleTime = () => {
+  //   var verifSeconds = Number((timer / 1000).toFixed(0));
+  //   var Milliseconds: string | number = timer - verifSeconds * 1000;
+
+  //   var verifMinuts = Number((verifSeconds / 60).toFixed(0));
+  //   var Seconds: string | number = verifSeconds - verifMinuts * 60;
+
+  //   var Hours: string | number = Number((verifMinuts / 60).toFixed(0));
+  //   var Minuts: string | number = verifMinuts - Hours * 60;
+
+  //   if (Milliseconds.toString().length == 1) {
+  //     Milliseconds = "0" + Milliseconds;
+  //   }
+  //   if (Seconds.toString().length == 1) {
+  //     Seconds = "0" + Seconds;
+  //   }
+  //   if (Minuts.toString().length == 1) {
+  //     Minuts = "0" + Minuts;
+  //   }
+  //   if (Hours.toString().length == 1) {
+  //     Hours = "0" + Hours;
+  //   }
+
+  //   setHour(`${Hours}:${Minuts}:${Seconds}:${Milliseconds}`);
+  // }
 
   const HandleSetTime = () => {
     if (inputValue) {
@@ -34,6 +89,8 @@ function App() {
   const HandleSetPassword = () => {
     if (inputValue) {
       setTimer(timerWaiting);
+      setIsCronometroAtivo(true);
+
       setPassword(inputValue);
       setType("password");
 
@@ -46,6 +103,7 @@ function App() {
   const HandleConfirmPassword = () => {
     if (inputValue === password) {
       alert("Password Confirmed");
+      setIsCronometroAtivo(false);
     } else {
       alert("Password Incorrect");
     }
@@ -67,7 +125,12 @@ function App() {
 
   return (
     <div className="App">
-      <Stopwatch timer={timer}/>
+
+      <div className="stopwatch">
+        {horas.toString().padStart(2, "0")}:{minutos.toString().padStart(2, "0")}:{segundos.toString().padStart(2, "0")}:
+        {milissegundos.toString().padStart(3, "0").substring(0, 2)}
+      </div>
+
       <input
         className="input_insert"
         id="input_pass"

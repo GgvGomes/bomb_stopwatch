@@ -13,7 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  /* animation: pisca 1.5s infinite; */
+  animation: pisca 1.5s infinite;
 }
 
 @keyframes pisca {
