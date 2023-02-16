@@ -12,6 +12,20 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* animation: pisca 1.5s infinite; */
+}
+
+@keyframes pisca {
+  0% {
+    background-color: #242424;
+  }
+  50% {
+    background-color: #6e8231;
+  }
+  100% {
+    background-color: #692b2b;
+  }
 }
 
 a {
@@ -29,6 +43,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  overflow: hidden;
 }
 
 h1 {
