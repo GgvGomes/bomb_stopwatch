@@ -7,7 +7,6 @@ function App() {
   const [timerWaiting, setTimerWaiting] = useState(0);
   const [password, setPassword] = useState("");
 
-  const [hour, setHour] = useState("00:00:00:00");
   const [isCronometroAtivo, setIsCronometroAtivo] = useState(false);
 
   const [type, setType] = useState("number");
@@ -15,9 +14,6 @@ function App() {
 
   const input: any = document.getElementById("input_pass");
 
-  function handleStartStop() {
-    setIsCronometroAtivo((ativo) => !ativo);
-  }
 
   useEffect(() => {
     let intervalId: number | undefined;
