@@ -8,9 +8,9 @@
 
 A time bomb was created in this repository. To run it, just enter the time you want it to last, a password and that's it, just enter the password before the clock reaches 0!
 
-<p align="center">
+<h1 align="center">
   ⏱️💣🧨‼️
-</p>
+</h1>
 
 <br/><br/>
 <p align="center">
