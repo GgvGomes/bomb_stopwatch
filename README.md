@@ -8,6 +8,10 @@
 
 A time bomb was created in this repository. To run it, just enter the time you want it to last, a password and that's it, just enter the password before the clock reaches 0!
 
+# How to use
+
+When you start the app, you will have a reset clock on your home screen and an Input to fill in. When you put some value in it and press the button, another Input will appear for you to enter the password that disarms the bomb. When you press the button, the pump timer starts and will only be stopped with the correct password. It better be quick!!
+
 <h1 align="center">
   ⏱️💣🧨‼️
 </h1>
